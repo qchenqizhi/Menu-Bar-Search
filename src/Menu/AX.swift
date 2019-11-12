@@ -91,8 +91,12 @@ func clickMenu(menu element: AXUIElement, pathIndices: [Int], currentIndex: Int)
     guard itemIndex >= menuBarItems.startIndex, itemIndex < menuBarItems.endIndex else { return }
     let child = menuBarItems[itemIndex]
     if currentIndex == pathIndices.count - 1 {
-        AXUIElementPerformAction(child, kAXPressAction as CFString)
+        let err = AXUIElementPerformAction(child, kAXPickAction as CFString)
+        debugPrint(err)
         return
+    } else {
+        let err = AXUIElementPerformAction(child, kAXPickAction as CFString)
+        debugPrint(err)
     }
     guard let menuBar = getAttribute(element: child, name: kAXChildrenAttribute) as? [AXUIElement] else { return }
     clickMenu(menu: menuBar[0], pathIndices: pathIndices, currentIndex: currentIndex + 1)
