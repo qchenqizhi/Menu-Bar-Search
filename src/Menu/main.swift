@@ -7,7 +7,7 @@
 
 import Foundation
 import Cocoa
-
+import SwiftProtobuf
 
 
 
@@ -173,7 +173,7 @@ parseEnv("-cache", createDouble) {
 
 var app: NSRunningApplication? = nil
 if pid == -1 {
-    app = NSWorkspace.shared().menuBarOwningApplication
+    app = NSWorkspace.shared.menuBarOwningApplication
 }
 else {
     app = NSRunningApplication(processIdentifier: pid)
@@ -355,7 +355,7 @@ if !query.isEmpty {
                 // no matches at all
                 return (menu, 0)
             }
-            .sorted(by: { $0.0.1 > $0.1.1 })
+            .sorted(by: { $0.1 > $1.1 })
     
     
     // scan through sorted list, add items as long

@@ -179,7 +179,7 @@ func dumpInfo(element: AXUIElement, name: String, depth: Int) {
     print(padding, ":::", name, ":::")
     print(padding, "   ", element)
     func printAttributeInfo(_ header: String, _ attributes: [String]) {
-        let values = attributes.flatMap { (name:String) -> (String, CFTypeRef)? in
+        let values = attributes.compactMap { (name:String) -> (String, CFTypeRef)? in
             if let a = getAttribute(element: element, name: name) {
                 return (name, a)
             }
